@@ -13,35 +13,35 @@ can be viewed as Markdown.
   
 You can install the latest version via npm:
 
-  $ npm install --save xlsx-writestream
+    $ npm install --save xlsx-writestream
 
 Require the module:
 
-  var xlsx = require('xlsx-writestream');
+    var xlsx = require('xlsx-writestream');
 
 Write a spreadsheet:
 
-  var data = [
-      {
-          "Name": "Bob",
-          "Location": "Sweden"
-      },
-      {
-          "Name": "Alice",
-          "Location": "France"
-      }
-  ];
+    var data = [
+        {
+            "Name": "Bob",
+            "Location": "Sweden"
+        },
+        {
+            "Name": "Alice",
+            "Location": "France"
+        }
+    ];
 
-  xlsx.write('mySpreadsheet.xlsx', data, function (err) {
-      // Error handling here
-  });
+    xlsx.write('mySpreadsheet.xlsx', data, function (err) {
+        // Error handling here
+    });
 
 This will write a spreadsheet like this:
 
-  Name    | Location
-  --------+---------
-  Bob     | Sweden
-  Alice   | France
+| Name    | Location |
+| ------ | ------- |
+| Bob     | Sweden |
+| Alice   | France |
 
 In other words: The key names are used for the first row (headers),
 The values are used for the columns. All field names should be present
