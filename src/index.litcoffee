@@ -112,7 +112,8 @@ Add a single row.
 
         @_startRow()
         for key, col in @cellMap
-          @_addCell(row[key] || "", col + 1)
+          value = if row[key] == undefined or row[key] == null then '' else row[key]
+          @_addCell(value, col + 1)
         @_endRow()
 
 ##### addRows(rows: Array)
