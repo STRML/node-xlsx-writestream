@@ -93,6 +93,7 @@ Add a single row.
       #     "A String Column" : "A String Value",
       #     "A Number Column" : 12345,
       #     "A Date Column" : new Date(1999,11,31)
+      #     "A DateTime Column": {value: new Date(), formatAsDateTime: true},
       # })
       addRow: (row) ->
 
@@ -261,6 +262,11 @@ Adds a cell to the row in progress.
 
         # Hyperlink support
         if Object.prototype.toString.call(value) == '[object Object]'
+          if value.formatAsDateTime
+            date = @_dateToOADate(value.value)
+            @rowBuffer += blobs.dateTimeCell(date, cell)
+            return
+
           if !value.value || !value.hyperlink
             throw new Error("A hyperlink cell must have both 'value' and 'hyperlink' keys.")
           @_addCell(value.value, col)

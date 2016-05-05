@@ -81,7 +81,8 @@ module.exports =
             </cellStyleXfs>
             <cellXfs count="1">
                 <xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/>
-                <xf numFmtId="14" fontId="0" fillId="0" borderId="0" xfId="0"/>
+                <xf numFmtId="4" fontId="0" fillId="0" borderId="0" xfId="0"/>
+                <xf numFmtId="165" fontId="0" fillId="0" borderId="0" xfId="0"/>
             </cellXfs>
             <cellStyles count="1">
                 <cellStyle name="Normal" xfId="0" builtinId="0"/>
@@ -93,6 +94,9 @@ module.exports =
                     <x14:slicerStyles defaultSlicerStyle="SlicerStyleLight1"/>
                 </ext>
             </extLst>
+            <numFmts count="4">
+                <numFmt formatCode="DD/MM/YYYY\ HH:MM:SS" numFmtId="165"/>
+            </numFmts>
         </styleSheet>
     """.replace(/\n\s*/g, '')
 
@@ -137,6 +141,7 @@ module.exports =
 
     cell: (index, cell) -> """<c r="#{cell}" t="s"><v>#{index}</v></c>"""
     dateCell: (value, cell) -> """<c r="#{cell}" s="1" t="n"><v>#{value}</v></c>"""
+    dateTimeCell: (value, cell) -> """<c r="#{cell}" s="2" t="n"><v>#{value}</v></c>"""
     numberCell: (value, cell) -> """<c r="#{cell}" s="0" t="n"><v>#{value}</v></c>"""
 
     sheetDataHeader: """<sheetData>"""
