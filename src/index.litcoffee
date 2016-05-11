@@ -79,6 +79,23 @@ When constructing a writer, pass it an optional file path and customization opti
         # Hook this passthrough into the zip stream.
         @zip.append(@sheetStream, {name: 'xl/worksheets/sheet1.xml'})
 
+#### Add SheetDataHeader
+
+Simply add known header to resulting stream.
+Should be used in conjunction with low-level api: _startRow, _addCell, endRow
+
+##### _addSheetDataHeader: ()
+
+Add SheetDataHeader to resulting stream.
+
+      # @example (javascript)
+      # writer._addSheetDataHeader()
+      _addSheetDataHeader: () ->
+        if !@haveHeader
+          @_write(blobs.sheetDataHeader)
+          @haveHeader = true
+
+
 #### Adding rows
 
 Rows are easy to add one by one or all at once. Data types within the sheet will
@@ -115,6 +132,8 @@ Add a single row.
         for key, col in @cellMap
           @_addCell(row[key] || "", col + 1)
         @_endRow()
+
+
 
 ##### addRows(rows: Array)
 
