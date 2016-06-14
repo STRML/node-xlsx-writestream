@@ -50,6 +50,9 @@ module.exports =
     styles: """
         <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
         <styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="x14ac" xmlns:x14ac="http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac">
+            <numFmts count="1">
+                <numFmt formatCode="DD/MM/YYYY\ HH:MM:SS" numFmtId="165"/>
+            </numFmts>
             <fonts count="1" x14ac:knownFonts="1">
                 <font>
                     <sz val="11"/>
@@ -94,9 +97,6 @@ module.exports =
                     <x14:slicerStyles defaultSlicerStyle="SlicerStyleLight1"/>
                 </ext>
             </extLst>
-            <numFmts count="4">
-                <numFmt formatCode="DD/MM/YYYY\ HH:MM:SS" numFmtId="165"/>
-            </numFmts>
         </styleSheet>
     """.replace(/\n\s*/g, '')
 
