@@ -24,20 +24,22 @@
   "scripts": {
     "benchmark": "grunt benchmark",
     "test": "grunt test",
-    "prepublish": "grunt build"
+    "prepublish": "grunt build",
+    "install": "grunt build"
   },
   "devDependencies": {
     "coffee-script": "~1.6.3",
-    "grunt-contrib-watch": "~0.3.1",
-    "grunt-contrib-coffee": "~0.6.0",
-    "grunt-contrib-clean": "~0.4.0",
-    "grunt": "~0.4.0",
-    "grunt-mocha-cli": "~1.0.1",
-    "grunt-mkdir": "~0.1.0",
     "excel": "0.0.60",
-    "underscore": "~1.4.4",
+    "grunt": "~0.4.0",
+    "grunt-benchmark": "~0.2.0",
+    "grunt-cli": "^1.2.0",
+    "grunt-contrib-clean": "~0.4.0",
+    "grunt-contrib-coffee": "~0.6.0",
+    "grunt-contrib-watch": "~0.3.1",
+    "grunt-mkdir": "~0.1.0",
+    "grunt-mocha-cli": "~1.0.1",
     "grunt-release": "~0.3.1",
-    "grunt-benchmark": "~0.2.0"
+    "underscore": "~1.4.4"
   },
   "keywords": [
     "xlsx",
