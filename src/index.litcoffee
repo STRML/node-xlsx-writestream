@@ -306,8 +306,8 @@ Adds a cell to the row in progress.
 Begins a row. Call this before starting any row. Will start a buffer
 for all proceeding cells, until @_endRow is called.
 
-      _startRow: () ->
-        @rowBuffer = blobs.startRow(@currentRow)
+      _startRow: (ht) ->
+        @rowBuffer = blobs.startRow(@currentRow, ht)
         @currentRow += 1
 
 Ends a row. Will write the row to the sheet.

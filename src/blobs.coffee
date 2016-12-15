@@ -136,7 +136,15 @@ module.exports =
     column: (width, index) -> """<col min="#{index}" max="#{index}" width="#{width}" customWidth="1"/>"""
     endColumns: """</cols>"""
 
-    startRow: (row) -> """<row r="#{row + 1}">"""
+    #startRow: (row) -> """<row r="#{row + 1}">"""
+    startRow: (row, ht) ->
+        out = """<row r="#{row + 1}" """
+        if ht>0
+            out += """ customHeight="true" ht="#{ht}" """
+        out += ">"
+        console.log(out)
+        return out
+
     endRow: """</row>"""
 
     cell: (index, cell) -> """<c r="#{cell}" t="s"><v>#{index}</v></c>"""
