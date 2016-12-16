@@ -142,7 +142,6 @@ module.exports =
         if ht>0
             out += """ customHeight="true" ht="#{ht}" """
         out += ">"
-        console.log(out)
         return out
 
     endRow: """</row>"""
