@@ -122,6 +122,7 @@ by enclosing it within an object with the keys `value, hyperlink`.
         "A String Column" : "A String Value",
         "A Number Column" : 12345,
         "A Date Column" : new Date(1999,11,31)
+        "A DateTime Column": {value: new Date(), formatAsDateTime: true},
         "A String column with a hyperlink" : {value: "A String Value", hyperlink: "http://www.google.com"}
         "A Number column with a hyperlink" : {value: 12345, hyperlink: "http://www.google.com"}
         "A Date column with a hyperlink" : {value: new Date(1999,11,31), hyperlink: "http://www.google.com"}

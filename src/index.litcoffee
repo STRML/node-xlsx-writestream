@@ -79,6 +79,23 @@ When constructing a writer, pass it an optional file path and customization opti
         # Hook this passthrough into the zip stream.
         @zip.append(@sheetStream, {name: 'xl/worksheets/sheet1.xml'})
 
+#### Add SheetDataHeader
+
+Simply add known header to resulting stream.
+Should be used in conjunction with low-level api: _startRow, _addCell, endRow
+
+##### _addSheetDataHeader: ()
+
+Add SheetDataHeader to resulting stream.
+
+      # @example (javascript)
+      # writer._addSheetDataHeader()
+      _addSheetDataHeader: () ->
+        if !@haveHeader
+          @_write(blobs.sheetDataHeader)
+          @haveHeader = true
+
+
 #### Adding rows
 
 Rows are easy to add one by one or all at once. Data types within the sheet will
@@ -93,6 +110,7 @@ Add a single row.
       #     "A String Column" : "A String Value",
       #     "A Number Column" : 12345,
       #     "A Date Column" : new Date(1999,11,31)
+      #     "A DateTime Column": {value: new Date(), formatAsDateTime: true},
       # })
       addRow: (row) ->
 
@@ -114,6 +132,8 @@ Add a single row.
         for key, col in @cellMap
           @_addCell(row[key] || "", col + 1)
         @_endRow()
+
+
 
 ##### addRows(rows: Array)
 
@@ -261,6 +281,11 @@ Adds a cell to the row in progress.
 
         # Hyperlink support
         if Object.prototype.toString.call(value) == '[object Object]'
+          if value.formatAsDateTime
+            date = @_dateToOADate(value.value)
+            @rowBuffer += blobs.dateTimeCell(date, cell)
+            return
+
           if !value.value || !value.hyperlink
             throw new Error("A hyperlink cell must have both 'value' and 'hyperlink' keys.")
           @_addCell(value.value, col)
@@ -281,8 +306,8 @@ Adds a cell to the row in progress.
 Begins a row. Call this before starting any row. Will start a buffer
 for all proceeding cells, until @_endRow is called.
 
-      _startRow: () ->
-        @rowBuffer = blobs.startRow(@currentRow)
+      _startRow: (ht) ->
+        @rowBuffer = blobs.startRow(@currentRow, ht)
         @currentRow += 1
 
 Ends a row. Will write the row to the sheet.

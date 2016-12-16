@@ -50,6 +50,9 @@ module.exports =
     styles: """
         <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
         <styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="x14ac" xmlns:x14ac="http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac">
+            <numFmts count="1">
+                <numFmt formatCode="DD/MM/YYYY\ HH:MM:SS" numFmtId="165"/>
+            </numFmts>
             <fonts count="1" x14ac:knownFonts="1">
                 <font>
                     <sz val="11"/>
@@ -81,7 +84,8 @@ module.exports =
             </cellStyleXfs>
             <cellXfs count="1">
                 <xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/>
-                <xf numFmtId="14" fontId="0" fillId="0" borderId="0" xfId="0"/>
+                <xf numFmtId="4" fontId="0" fillId="0" borderId="0" xfId="0"/>
+                <xf numFmtId="165" fontId="0" fillId="0" borderId="0" xfId="0"/>
             </cellXfs>
             <cellStyles count="1">
                 <cellStyle name="Normal" xfId="0" builtinId="0"/>
@@ -132,11 +136,19 @@ module.exports =
     column: (width, index) -> """<col min="#{index}" max="#{index}" width="#{width}" customWidth="1"/>"""
     endColumns: """</cols>"""
 
-    startRow: (row) -> """<row r="#{row + 1}">"""
+    #startRow: (row) -> """<row r="#{row + 1}">"""
+    startRow: (row, ht) ->
+        out = """<row r="#{row + 1}" """
+        if ht>0
+            out += """ customHeight="true" ht="#{ht}" """
+        out += ">"
+        return out
+
     endRow: """</row>"""
 
     cell: (index, cell) -> """<c r="#{cell}" t="s"><v>#{index}</v></c>"""
     dateCell: (value, cell) -> """<c r="#{cell}" s="1" t="n"><v>#{value}</v></c>"""
+    dateTimeCell: (value, cell) -> """<c r="#{cell}" s="2" t="n"><v>#{value}</v></c>"""
     numberCell: (value, cell) -> """<c r="#{cell}" s="0" t="n"><v>#{value}</v></c>"""
 
     sheetDataHeader: """<sheetData>"""
