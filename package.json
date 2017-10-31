@@ -45,6 +45,6 @@
     "spreadsheet"
   ],
   "dependencies": {
-    "archiver": "0.5.1"
+    "archiver": "1.0.1"
   }
 }
